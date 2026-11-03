@@ -1,0 +1,47 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: apiforge-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-apiforge}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-apiforge_secret_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-apiforge_dev}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-apiforge} -d ${POSTGRES_DB:-apiforge_dev}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - apiforge_net
+
+  redis:
+    image: redis:7-alpine
+    container_name: apiforge-redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "${REDIS_PASSWORD:-redis_secret_pass}"]
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-redis_secret_pass}", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - apiforge_net
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  apiforge_net:
+    driver: bridge

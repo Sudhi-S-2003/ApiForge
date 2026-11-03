@@ -1,0 +1,35 @@
+{
+  "name": "@apiforge/shared",
+  "version": "1.0.0",
+  "description": "Canonical Contract AST, Shared Types, and Validators for ApiForge",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "clean": "rimraf dist",
+    "test": "jest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "yaml": "^2.5.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.13",
+    "@types/node": "^22.5.4",
+    "jest": "^29.7.0",
+    "rimraf": "^6.0.1",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.5.4"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": ["**/*.spec.ts"],
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    }
+  }
+}

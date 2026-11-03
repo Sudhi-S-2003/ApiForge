@@ -1,0 +1,28 @@
+{
+  "name": "apiforge-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Enterprise API Contract Management, Documentation & Testing Platform",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "build:shared": "npm run build --workspace=@apiforge/shared",
+    "build:api": "npm run build --workspace=@apiforge/api",
+    "build:web": "npm run build --workspace=@apiforge/web",
+    "dev:api": "npm run start:dev --workspace=@apiforge/api",
+    "dev:web": "npm run dev --workspace=@apiforge/web",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "docker:up": "docker compose -f docker/docker-compose.yml up -d",
+    "docker:down": "docker compose -f docker/docker-compose.yml down",
+    "docker:logs": "docker compose -f docker/docker-compose.yml logs -f"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4"
+  }
+}

@@ -1,0 +1,2074 @@
+[
+  {
+    "step": 1,
+    "title": "Register Account (POST /auth/register)",
+    "url": "http://localhost:4000/api/v1/auth/register",
+    "method": "POST",
+    "headers": {},
+    "body": {
+      "email": "tester-1793628155928@apiforge.local",
+      "password": "Password123!Secure",
+      "name": "Master QA Tester"
+    },
+    "statusCode": 201,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "user": {
+          "id": "3c1f3757-6ca9-4512-ad76-6222bd5eefd7",
+          "email": "tester-1793628155928@apiforge.local",
+          "name": "Master QA Tester"
+        },
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzYzFmMzc1Ny02Y2E5LTQ1MTItYWQ3Ni02MjIyYmQ1ZWVmZDciLCJlbWFpbCI6InRlc3Rlci0xNzkzNjI4MTU1OTI4QGFwaWZvcmdlLmxvY2FsIiwiaWF0IjoxNzkzNjI4MTU2LCJleHAiOjE3OTM2MjkwNTZ9.h_3Y6wJRiJJ3pHFxgztwkJjPGm5hR1OP2PmlqP7-tPY"
+      }
+    },
+    "durationMs": 332,
+    "status": "PASSED",
+    "notes": "Account registered successfully with access token"
+  },
+  {
+    "step": 2,
+    "title": "User Login (POST /auth/login)",
+    "url": "http://localhost:4000/api/v1/auth/login",
+    "method": "POST",
+    "headers": {},
+    "body": {
+      "email": "tester-1793628155928@apiforge.local",
+      "password": "Password123!Secure"
+    },
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "user": {
+          "id": "3c1f3757-6ca9-4512-ad76-6222bd5eefd7",
+          "email": "tester-1793628155928@apiforge.local",
+          "name": "Master QA Tester",
+          "avatarUrl": null
+        },
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzYzFmMzc1Ny02Y2E5LTQ1MTItYWQ3Ni02MjIyYmQ1ZWVmZDciLCJlbWFpbCI6InRlc3Rlci0xNzkzNjI4MTU1OTI4QGFwaWZvcmdlLmxvY2FsIiwiaWF0IjoxNzkzNjI4MTU2LCJleHAiOjE3OTM2MjkwNTZ9.h_3Y6wJRiJJ3pHFxgztwkJjPGm5hR1OP2PmlqP7-tPY"
+      }
+    },
+    "durationMs": 185,
+    "status": "PASSED",
+    "notes": "Login successful and JWT returned"
+  },
+  {
+    "step": 3,
+    "title": "Get Current Profile (GET /auth/me)",
+    "url": "http://localhost:4000/api/v1/auth/me",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "3c1f3757-6ca9-4512-ad76-6222bd5eefd7",
+        "email": "tester-1793628155928@apiforge.local",
+        "name": "Master QA Tester",
+        "avatarUrl": null,
+        "createdAt": "2026-11-02T14:02:36.208Z",
+        "memberships": [
+          {
+            "id": "5dc957c7-aae7-4a88-acba-c1740ce49e4d",
+            "workspaceId": "8df20c5e-c7db-4566-8c3f-07bf14d7a59d",
+            "userId": "3c1f3757-6ca9-4512-ad76-6222bd5eefd7",
+            "role": "OWNER",
+            "createdAt": "2026-11-02T14:02:36.212Z",
+            "workspace": {
+              "id": "8df20c5e-c7db-4566-8c3f-07bf14d7a59d",
+              "name": "Master QA Tester's Workspace",
+              "slug": "master-qa-tester-mvzbw6r5"
+            }
+          }
+        ]
+      }
+    },
+    "durationMs": 18,
+    "status": "PASSED",
+    "notes": "Authenticated as: tester-1793628155928@apiforge.local"
+  },
+  {
+    "step": 4,
+    "title": "Create Workspace 1 [To be Deleted] (POST /workspaces)",
+    "url": "http://localhost:4000/api/v1/workspaces",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": {
+      "name": "Disposable Workspace 1",
+      "slug": "ws-disp-1793628156468",
+      "description": "First workspace created to test deletion isolation"
+    },
+    "statusCode": 201,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "c213e0ef-461a-45ca-b46f-d72f1d765dba",
+        "name": "Disposable Workspace 1",
+        "slug": "ws-disp-1793628156468",
+        "description": "First workspace created to test deletion isolation",
+        "createdAt": "2026-11-02T14:02:36.476Z",
+        "updatedAt": "2026-11-02T14:02:36.476Z",
+        "members": [
+          {
+            "id": "2000e914-1da6-49fe-aefa-335fd88928e1",
+            "workspaceId": "c213e0ef-461a-45ca-b46f-d72f1d765dba",
+            "userId": "3c1f3757-6ca9-4512-ad76-6222bd5eefd7",
+            "role": "OWNER",
+            "createdAt": "2026-11-02T14:02:36.476Z",
+            "user": {
+              "id": "3c1f3757-6ca9-4512-ad76-6222bd5eefd7",
+              "name": "Master QA Tester",
+              "email": "tester-1793628155928@apiforge.local",
+              "avatarUrl": null
+            }
+          }
+        ]
+      }
+    },
+    "durationMs": 11,
+    "status": "PASSED",
+    "notes": "Created Workspace 1 ID: c213e0ef-461a-45ca-b46f-d72f1d765dba"
+  },
+  {
+    "step": 5,
+    "title": "Create Workspace 2 [To be Retained] (POST /workspaces)",
+    "url": "http://localhost:4000/api/v1/workspaces",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": {
+      "name": "Persistent Workspace 2",
+      "slug": "ws-pers-1793628156480",
+      "description": "Second workspace created to verify retention after deleting workspace 1"
+    },
+    "statusCode": 201,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "a6b335e0-8563-42ce-abb6-5db0af35b2fa",
+        "name": "Persistent Workspace 2",
+        "slug": "ws-pers-1793628156480",
+        "description": "Second workspace created to verify retention after deleting workspace 1",
+        "createdAt": "2026-11-02T14:02:36.489Z",
+        "updatedAt": "2026-11-02T14:02:36.489Z",
+        "members": [
+          {
+            "id": "a936b0e9-25f8-4d4c-a862-0d79cd78e2df",
+            "workspaceId": "a6b335e0-8563-42ce-abb6-5db0af35b2fa",
+            "userId": "3c1f3757-6ca9-4512-ad76-6222bd5eefd7",
+            "role": "OWNER",
+            "createdAt": "2026-11-02T14:02:36.489Z",
+            "user": {
+              "id": "3c1f3757-6ca9-4512-ad76-6222bd5eefd7",
+              "name": "Master QA Tester",
+              "email": "tester-1793628155928@apiforge.local",
+              "avatarUrl": null
+            }
+          }
+        ]
+      }
+    },
+    "durationMs": 13,
+    "status": "PASSED",
+    "notes": "Created Workspace 2 ID: a6b335e0-8563-42ce-abb6-5db0af35b2fa"
+  },
+  {
+    "step": 6,
+    "title": "List Workspaces (GET /workspaces)",
+    "url": "http://localhost:4000/api/v1/workspaces",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "data": [
+        {
+          "id": "a6b335e0-8563-42ce-abb6-5db0af35b2fa",
+          "name": "Persistent Workspace 2",
+          "slug": "ws-pers-1793628156480",
+          "description": "Second workspace created to verify retention after deleting workspace 1",
+          "createdAt": "2026-11-02T14:02:36.489Z",
+          "updatedAt": "2026-11-02T14:02:36.489Z",
+          "_count": {
+            "projects": 0,
+            "members": 1
+          },
+          "members": [
+            {
+              "role": "OWNER"
+            }
+          ]
+        },
+        {
+          "id": "c213e0ef-461a-45ca-b46f-d72f1d765dba",
+          "name": "Disposable Workspace 1",
+          "slug": "ws-disp-1793628156468",
+          "description": "First workspace created to test deletion isolation",
+          "createdAt": "2026-11-02T14:02:36.476Z",
+          "updatedAt": "2026-11-02T14:02:36.476Z",
+          "_count": {
+            "projects": 0,
+            "members": 1
+          },
+          "members": [
+            {
+              "role": "OWNER"
+            }
+          ]
+        },
+        {
+          "id": "8df20c5e-c7db-4566-8c3f-07bf14d7a59d",
+          "name": "Master QA Tester's Workspace",
+          "slug": "master-qa-tester-mvzbw6r5",
+          "description": "Personal default workspace",
+          "createdAt": "2026-11-02T14:02:36.212Z",
+          "updatedAt": "2026-11-02T14:02:36.212Z",
+          "_count": {
+            "projects": 0,
+            "members": 1
+          },
+          "members": [
+            {
+              "role": "OWNER"
+            }
+          ]
+        }
+      ]
+    },
+    "durationMs": 17,
+    "status": "PASSED",
+    "notes": "Found 3 user workspaces"
+  },
+  {
+    "step": 7,
+    "title": "Get Workspace Details (GET /workspaces/:id)",
+    "url": "http://localhost:4000/api/v1/workspaces/c213e0ef-461a-45ca-b46f-d72f1d765dba",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "c213e0ef-461a-45ca-b46f-d72f1d765dba",
+        "name": "Disposable Workspace 1",
+        "slug": "ws-disp-1793628156468",
+        "description": "First workspace created to test deletion isolation",
+        "createdAt": "2026-11-02T14:02:36.476Z",
+        "updatedAt": "2026-11-02T14:02:36.476Z",
+        "members": [
+          {
+            "id": "2000e914-1da6-49fe-aefa-335fd88928e1",
+            "workspaceId": "c213e0ef-461a-45ca-b46f-d72f1d765dba",
+            "userId": "3c1f3757-6ca9-4512-ad76-6222bd5eefd7",
+            "role": "OWNER",
+            "createdAt": "2026-11-02T14:02:36.476Z",
+            "user": {
+              "id": "3c1f3757-6ca9-4512-ad76-6222bd5eefd7",
+              "name": "Master QA Tester",
+              "email": "tester-1793628155928@apiforge.local",
+              "avatarUrl": null
+            }
+          }
+        ],
+        "projects": []
+      }
+    },
+    "durationMs": 16,
+    "status": "PASSED",
+    "notes": "Retrieved workspace \"Disposable Workspace 1\""
+  },
+  {
+    "step": 8,
+    "title": "Patch Workspace Metadata (PATCH /workspaces/:id)",
+    "url": "http://localhost:4000/api/v1/workspaces/a6b335e0-8563-42ce-abb6-5db0af35b2fa",
+    "method": "PATCH",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": {
+      "description": "Updated metadata for Persistent Workspace 2"
+    },
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "a6b335e0-8563-42ce-abb6-5db0af35b2fa",
+        "name": "Persistent Workspace 2",
+        "slug": "ws-pers-1793628156480",
+        "description": "Updated metadata for Persistent Workspace 2",
+        "createdAt": "2026-11-02T14:02:36.489Z",
+        "updatedAt": "2026-11-02T14:02:36.539Z"
+      }
+    },
+    "durationMs": 16,
+    "status": "PASSED",
+    "notes": "Workspace 2 patched successfully"
+  },
+  {
+    "step": 9,
+    "title": "DELETE Workspace 1 [Only 1 of 2] (DELETE /workspaces/:id)",
+    "url": "http://localhost:4000/api/v1/workspaces/c213e0ef-461a-45ca-b46f-d72f1d765dba",
+    "method": "DELETE",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "message": "Workspace successfully deleted"
+    },
+    "durationMs": 21,
+    "status": "PASSED",
+    "notes": "Workspace 1 (c213e0ef-461a-45ca-b46f-d72f1d765dba) deleted"
+  },
+  {
+    "step": 10,
+    "title": "Verify Workspace 1 Deleted (GET /workspaces/:id)",
+    "url": "http://localhost:4000/api/v1/workspaces/c213e0ef-461a-45ca-b46f-d72f1d765dba",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 403,
+    "responseBody": {
+      "message": "You are not a member of this workspace",
+      "error": "Forbidden",
+      "statusCode": 403
+    },
+    "durationMs": 9,
+    "status": "PASSED",
+    "notes": "Confirmed: Access rejected with HTTP 403 (Resource deleted)"
+  },
+  {
+    "step": 11,
+    "title": "Verify Workspace 2 Retained (GET /workspaces/:id)",
+    "url": "http://localhost:4000/api/v1/workspaces/a6b335e0-8563-42ce-abb6-5db0af35b2fa",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "a6b335e0-8563-42ce-abb6-5db0af35b2fa",
+        "name": "Persistent Workspace 2",
+        "slug": "ws-pers-1793628156480",
+        "description": "Updated metadata for Persistent Workspace 2",
+        "createdAt": "2026-11-02T14:02:36.489Z",
+        "updatedAt": "2026-11-02T14:02:36.539Z",
+        "members": [
+          {
+            "id": "a936b0e9-25f8-4d4c-a862-0d79cd78e2df",
+            "workspaceId": "a6b335e0-8563-42ce-abb6-5db0af35b2fa",
+            "userId": "3c1f3757-6ca9-4512-ad76-6222bd5eefd7",
+            "role": "OWNER",
+            "createdAt": "2026-11-02T14:02:36.489Z",
+            "user": {
+              "id": "3c1f3757-6ca9-4512-ad76-6222bd5eefd7",
+              "name": "Master QA Tester",
+              "email": "tester-1793628155928@apiforge.local",
+              "avatarUrl": null
+            }
+          }
+        ],
+        "projects": []
+      }
+    },
+    "durationMs": 15,
+    "status": "PASSED",
+    "notes": "Confirmed: Workspace 2 safely intact"
+  },
+  {
+    "step": 12,
+    "title": "Create Project 1 in Workspace 2 (POST /workspaces/:id/projects)",
+    "url": "http://localhost:4000/api/v1/workspaces/a6b335e0-8563-42ce-abb6-5db0af35b2fa/projects",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": {
+      "name": "Project Alpha (Core API)",
+      "slug": "proj-alpha-1793628156593",
+      "description": "Primary API Project with automated versioning"
+    },
+    "statusCode": 201,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "554efe54-de95-4a04-99cc-087bedbd1c55",
+        "workspaceId": "a6b335e0-8563-42ce-abb6-5db0af35b2fa",
+        "name": "Project Alpha (Core API)",
+        "slug": "proj-alpha-1793628156593",
+        "description": "Primary API Project with automated versioning",
+        "createdAt": "2026-11-02T14:02:36.610Z",
+        "updatedAt": "2026-11-02T14:02:36.610Z",
+        "versions": [
+          {
+            "id": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+            "projectId": "554efe54-de95-4a04-99cc-087bedbd1c55",
+            "semver": "1.0.0",
+            "status": "DRAFT",
+            "isLatest": true,
+            "metadata": {
+              "description": "Primary API Project with automated versioning"
+            },
+            "createdAt": "2026-11-02T14:02:36.610Z",
+            "updatedAt": "2026-11-02T14:02:36.610Z"
+          }
+        ],
+        "environments": [
+          {
+            "id": "fea9db23-a816-44b8-8207-e989b58e45d0",
+            "projectId": "554efe54-de95-4a04-99cc-087bedbd1c55",
+            "name": "Development",
+            "baseUrl": "http://localhost:3000/api",
+            "variables": [],
+            "createdAt": "2026-11-02T14:02:36.610Z",
+            "updatedAt": "2026-11-02T14:02:36.610Z"
+          }
+        ]
+      }
+    },
+    "durationMs": 45,
+    "status": "PASSED",
+    "notes": "Created Project 1 ID: 554efe54-de95-4a04-99cc-087bedbd1c55, Default Version ID: 73366349-420f-4a85-a6ba-2f8dbc30bcf6"
+  },
+  {
+    "step": 13,
+    "title": "Create Project 2 in Workspace 2 (POST /workspaces/:id/projects)",
+    "url": "http://localhost:4000/api/v1/workspaces/a6b335e0-8563-42ce-abb6-5db0af35b2fa/projects",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": {
+      "name": "Project Beta (Secondary API)",
+      "slug": "proj-beta-1793628156639",
+      "description": "Secondary API Project"
+    },
+    "statusCode": 201,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "eb4b9b75-179b-41a1-bb49-406c27b6e11d",
+        "workspaceId": "a6b335e0-8563-42ce-abb6-5db0af35b2fa",
+        "name": "Project Beta (Secondary API)",
+        "slug": "proj-beta-1793628156639",
+        "description": "Secondary API Project",
+        "createdAt": "2026-11-02T14:02:36.653Z",
+        "updatedAt": "2026-11-02T14:02:36.653Z",
+        "versions": [
+          {
+            "id": "1995cf9d-06fa-4b74-b5d6-abc961c03277",
+            "projectId": "eb4b9b75-179b-41a1-bb49-406c27b6e11d",
+            "semver": "1.0.0",
+            "status": "DRAFT",
+            "isLatest": true,
+            "metadata": {
+              "description": "Secondary API Project"
+            },
+            "createdAt": "2026-11-02T14:02:36.653Z",
+            "updatedAt": "2026-11-02T14:02:36.653Z"
+          }
+        ],
+        "environments": [
+          {
+            "id": "a82fea7c-8188-4478-b9da-2ef96546c04d",
+            "projectId": "eb4b9b75-179b-41a1-bb49-406c27b6e11d",
+            "name": "Development",
+            "baseUrl": "http://localhost:3000/api",
+            "variables": [],
+            "createdAt": "2026-11-02T14:02:36.653Z",
+            "updatedAt": "2026-11-02T14:02:36.653Z"
+          }
+        ]
+      }
+    },
+    "durationMs": 20,
+    "status": "PASSED",
+    "notes": "Created Project 2 ID: eb4b9b75-179b-41a1-bb49-406c27b6e11d"
+  },
+  {
+    "step": 14,
+    "title": "List Projects in Workspace (GET /workspaces/:id/projects)",
+    "url": "http://localhost:4000/api/v1/workspaces/a6b335e0-8563-42ce-abb6-5db0af35b2fa/projects",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "data": [
+        {
+          "id": "eb4b9b75-179b-41a1-bb49-406c27b6e11d",
+          "workspaceId": "a6b335e0-8563-42ce-abb6-5db0af35b2fa",
+          "name": "Project Beta (Secondary API)",
+          "slug": "proj-beta-1793628156639",
+          "description": "Secondary API Project",
+          "createdAt": "2026-11-02T14:02:36.653Z",
+          "updatedAt": "2026-11-02T14:02:36.653Z",
+          "versions": [
+            {
+              "id": "1995cf9d-06fa-4b74-b5d6-abc961c03277",
+              "semver": "1.0.0",
+              "status": "DRAFT",
+              "_count": {
+                "endpoints": 0,
+                "schemas": 0
+              }
+            }
+          ],
+          "environments": [
+            {
+              "id": "a82fea7c-8188-4478-b9da-2ef96546c04d",
+              "name": "Development",
+              "baseUrl": "http://localhost:3000/api"
+            }
+          ]
+        },
+        {
+          "id": "554efe54-de95-4a04-99cc-087bedbd1c55",
+          "workspaceId": "a6b335e0-8563-42ce-abb6-5db0af35b2fa",
+          "name": "Project Alpha (Core API)",
+          "slug": "proj-alpha-1793628156593",
+          "description": "Primary API Project with automated versioning",
+          "createdAt": "2026-11-02T14:02:36.610Z",
+          "updatedAt": "2026-11-02T14:02:36.610Z",
+          "versions": [
+            {
+              "id": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+              "semver": "1.0.0",
+              "status": "DRAFT",
+              "_count": {
+                "endpoints": 0,
+                "schemas": 0
+              }
+            }
+          ],
+          "environments": [
+            {
+              "id": "fea9db23-a816-44b8-8207-e989b58e45d0",
+              "name": "Development",
+              "baseUrl": "http://localhost:3000/api"
+            }
+          ]
+        }
+      ]
+    },
+    "durationMs": 31,
+    "status": "PASSED",
+    "notes": "Found 2 projects in workspace"
+  },
+  {
+    "step": 15,
+    "title": "Get Project Details by ID (GET /projects/:id)",
+    "url": "http://localhost:4000/api/v1/projects/554efe54-de95-4a04-99cc-087bedbd1c55",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "554efe54-de95-4a04-99cc-087bedbd1c55",
+        "workspaceId": "a6b335e0-8563-42ce-abb6-5db0af35b2fa",
+        "name": "Project Alpha (Core API)",
+        "slug": "proj-alpha-1793628156593",
+        "description": "Primary API Project with automated versioning",
+        "createdAt": "2026-11-02T14:02:36.610Z",
+        "updatedAt": "2026-11-02T14:02:36.610Z",
+        "workspace": {
+          "id": "a6b335e0-8563-42ce-abb6-5db0af35b2fa",
+          "name": "Persistent Workspace 2",
+          "slug": "ws-pers-1793628156480"
+        },
+        "versions": [
+          {
+            "id": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+            "projectId": "554efe54-de95-4a04-99cc-087bedbd1c55",
+            "semver": "1.0.0",
+            "status": "DRAFT",
+            "isLatest": true,
+            "metadata": {
+              "description": "Primary API Project with automated versioning"
+            },
+            "createdAt": "2026-11-02T14:02:36.610Z",
+            "updatedAt": "2026-11-02T14:02:36.610Z",
+            "_count": {
+              "endpoints": 0,
+              "folders": 0,
+              "schemas": 0
+            }
+          }
+        ],
+        "environments": [
+          {
+            "id": "fea9db23-a816-44b8-8207-e989b58e45d0",
+            "projectId": "554efe54-de95-4a04-99cc-087bedbd1c55",
+            "name": "Development",
+            "baseUrl": "http://localhost:3000/api",
+            "variables": [],
+            "createdAt": "2026-11-02T14:02:36.610Z",
+            "updatedAt": "2026-11-02T14:02:36.610Z"
+          }
+        ]
+      }
+    },
+    "durationMs": 20,
+    "status": "PASSED",
+    "notes": "Retrieved Project 1: \"Project Alpha (Core API)\""
+  },
+  {
+    "step": 16,
+    "title": "Add Environment to Project (POST /projects/:id/environments)",
+    "url": "http://localhost:4000/api/v1/projects/554efe54-de95-4a04-99cc-087bedbd1c55/environments",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": {
+      "name": "Production",
+      "baseUrl": "https://api.production.internal",
+      "variables": [
+        {
+          "key": "API_KEY",
+          "value": "prod-secret-999"
+        }
+      ]
+    },
+    "statusCode": 201,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "2aa518e1-efb8-4915-a1e2-c30802ff8ffd",
+        "projectId": "554efe54-de95-4a04-99cc-087bedbd1c55",
+        "name": "Production",
+        "baseUrl": "https://api.production.internal",
+        "variables": [
+          {
+            "key": "API_KEY",
+            "value": "prod-secret-999",
+            "isSecret": false
+          }
+        ],
+        "createdAt": "2026-11-02T14:02:36.725Z",
+        "updatedAt": "2026-11-02T14:02:36.725Z"
+      }
+    },
+    "durationMs": 16,
+    "status": "PASSED",
+    "notes": "Production environment configured"
+  },
+  {
+    "step": 17,
+    "title": "Create Folder 1 [To be Deleted] (POST /versions/:id/folders)",
+    "url": "http://localhost:4000/api/v1/versions/73366349-420f-4a85-a6ba-2f8dbc30bcf6/folders",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": {
+      "name": "Auth & Onboarding (Temporary)",
+      "description": "First folder for deletion test"
+    },
+    "statusCode": 201,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "ec3ca222-1d5f-421e-b9d9-80ff5b92db14",
+        "versionId": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+        "name": "Auth & Onboarding (Temporary)",
+        "description": "First folder for deletion test",
+        "orderIndex": 0,
+        "createdAt": "2026-11-02T14:02:36.741Z",
+        "updatedAt": "2026-11-02T14:02:36.741Z"
+      }
+    },
+    "durationMs": 16,
+    "status": "PASSED",
+    "notes": "Created Folder 1 ID: ec3ca222-1d5f-421e-b9d9-80ff5b92db14"
+  },
+  {
+    "step": 18,
+    "title": "Create Folder 2 [To be Retained] (POST /versions/:id/folders)",
+    "url": "http://localhost:4000/api/v1/versions/73366349-420f-4a85-a6ba-2f8dbc30bcf6/folders",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": {
+      "name": "Payments & Checkout (Permanent)",
+      "description": "Second folder to verify retention"
+    },
+    "statusCode": 201,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "c4e04a42-84f8-46cd-8dec-f3d230532dae",
+        "versionId": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+        "name": "Payments & Checkout (Permanent)",
+        "description": "Second folder to verify retention",
+        "orderIndex": 0,
+        "createdAt": "2026-11-02T14:02:36.757Z",
+        "updatedAt": "2026-11-02T14:02:36.757Z"
+      }
+    },
+    "durationMs": 15,
+    "status": "PASSED",
+    "notes": "Created Folder 2 ID: c4e04a42-84f8-46cd-8dec-f3d230532dae"
+  },
+  {
+    "step": 19,
+    "title": "List Folders for Version (GET /versions/:id/folders)",
+    "url": "http://localhost:4000/api/v1/versions/73366349-420f-4a85-a6ba-2f8dbc30bcf6/folders",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "data": [
+        {
+          "id": "ec3ca222-1d5f-421e-b9d9-80ff5b92db14",
+          "versionId": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+          "name": "Auth & Onboarding (Temporary)",
+          "description": "First folder for deletion test",
+          "orderIndex": 0,
+          "createdAt": "2026-11-02T14:02:36.741Z",
+          "updatedAt": "2026-11-02T14:02:36.741Z"
+        },
+        {
+          "id": "c4e04a42-84f8-46cd-8dec-f3d230532dae",
+          "versionId": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+          "name": "Payments & Checkout (Permanent)",
+          "description": "Second folder to verify retention",
+          "orderIndex": 0,
+          "createdAt": "2026-11-02T14:02:36.757Z",
+          "updatedAt": "2026-11-02T14:02:36.757Z"
+        }
+      ]
+    },
+    "durationMs": 9,
+    "status": "PASSED",
+    "notes": "Found 2 folders"
+  },
+  {
+    "step": 20,
+    "title": "DELETE Folder 1 [Only 1 of 2] (DELETE /folders/:id)",
+    "url": "http://localhost:4000/api/v1/folders/ec3ca222-1d5f-421e-b9d9-80ff5b92db14",
+    "method": "DELETE",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "message": "Folder deleted"
+    },
+    "durationMs": 15,
+    "status": "PASSED",
+    "notes": "Folder 1 (ec3ca222-1d5f-421e-b9d9-80ff5b92db14) deleted"
+  },
+  {
+    "step": 21,
+    "title": "Verify Folder 2 Retained (GET /versions/:id/folders)",
+    "url": "http://localhost:4000/api/v1/versions/73366349-420f-4a85-a6ba-2f8dbc30bcf6/folders",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "data": [
+        {
+          "id": "c4e04a42-84f8-46cd-8dec-f3d230532dae",
+          "versionId": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+          "name": "Payments & Checkout (Permanent)",
+          "description": "Second folder to verify retention",
+          "orderIndex": 0,
+          "createdAt": "2026-11-02T14:02:36.757Z",
+          "updatedAt": "2026-11-02T14:02:36.757Z"
+        }
+      ]
+    },
+    "durationMs": 3,
+    "status": "PASSED",
+    "notes": "Folder 1 gone, Folder 2 safely retained"
+  },
+  {
+    "step": 22,
+    "title": "Create Endpoint 1 [To be Deleted] (POST /versions/:id/endpoints)",
+    "url": "http://localhost:4000/api/v1/versions/73366349-420f-4a85-a6ba-2f8dbc30bcf6/endpoints",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": {
+      "method": "POST",
+      "path": "/v1/users/archive",
+      "summary": "Archive a user account (Temporary)",
+      "description": "Endpoint created to verify deletion lifecycle",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": 200,
+          "description": "Archived",
+          "contentTypes": [
+            {
+              "mediaType": "application/json",
+              "schema": {
+                "type": "object"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "statusCode": 201,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "fb7a4bb7-0687-4fa8-a212-d608816f65cd",
+        "versionId": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+        "folderId": null,
+        "method": "POST",
+        "path": "/v1/users/archive",
+        "summary": "Archive a user account (Temporary)",
+        "description": "Endpoint created to verify deletion lifecycle",
+        "tags": [],
+        "deprecated": false,
+        "parameters": [],
+        "requestBody": null,
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "Archived",
+            "contentTypes": [
+              {
+                "schema": {
+                  "type": "object"
+                },
+                "mediaType": "application/json"
+              }
+            ]
+          }
+        ],
+        "security": [],
+        "orderIndex": 0,
+        "createdAt": "2026-11-02T14:02:36.801Z",
+        "updatedAt": "2026-11-02T14:02:36.801Z"
+      }
+    },
+    "durationMs": 13,
+    "status": "PASSED",
+    "notes": "Created Endpoint 1 ID: fb7a4bb7-0687-4fa8-a212-d608816f65cd"
+  },
+  {
+    "step": 23,
+    "title": "Create Endpoint 2 [To be Retained] (POST /versions/:id/endpoints)",
+    "url": "http://localhost:4000/api/v1/versions/73366349-420f-4a85-a6ba-2f8dbc30bcf6/endpoints",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": {
+      "method": "GET",
+      "path": "/v1/users/:id",
+      "summary": "Get user profile by ID (Permanent)",
+      "description": "Endpoint to be preserved",
+      "parameters": [
+        {
+          "name": "id",
+          "in": "PATH",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": 200,
+          "description": "User details",
+          "contentTypes": [
+            {
+              "mediaType": "application/json",
+              "schema": {
+                "type": "object"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "statusCode": 201,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "19e31a8b-c4ac-401b-aedd-a9263cc0c680",
+        "versionId": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+        "folderId": null,
+        "method": "GET",
+        "path": "/v1/users/:id",
+        "summary": "Get user profile by ID (Permanent)",
+        "description": "Endpoint to be preserved",
+        "tags": [],
+        "deprecated": false,
+        "parameters": [
+          {
+            "in": "PATH",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": null,
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "User details",
+            "contentTypes": [
+              {
+                "schema": {
+                  "type": "object"
+                },
+                "mediaType": "application/json"
+              }
+            ]
+          }
+        ],
+        "security": [],
+        "orderIndex": 0,
+        "createdAt": "2026-11-02T14:02:36.811Z",
+        "updatedAt": "2026-11-02T14:02:36.811Z"
+      }
+    },
+    "durationMs": 12,
+    "status": "PASSED",
+    "notes": "Created Endpoint 2 ID: 19e31a8b-c4ac-401b-aedd-a9263cc0c680"
+  },
+  {
+    "step": 24,
+    "title": "Duplicate Endpoint 2 (POST /endpoints/:id/duplicate)",
+    "url": "http://localhost:4000/api/v1/endpoints/19e31a8b-c4ac-401b-aedd-a9263cc0c680/duplicate",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 201,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "91eeb812-1515-4eea-8bf9-647c96a08000",
+        "versionId": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+        "folderId": null,
+        "method": "GET",
+        "path": "/v1/users/:id-copy",
+        "summary": "Get user profile by ID (Permanent) (Copy)",
+        "description": "Endpoint to be preserved",
+        "tags": [],
+        "deprecated": false,
+        "parameters": [
+          {
+            "in": "PATH",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": null,
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "User details",
+            "contentTypes": [
+              {
+                "schema": {
+                  "type": "object"
+                },
+                "mediaType": "application/json"
+              }
+            ]
+          }
+        ],
+        "security": [],
+        "orderIndex": 1,
+        "createdAt": "2026-11-02T14:02:36.827Z",
+        "updatedAt": "2026-11-02T14:02:36.827Z"
+      }
+    },
+    "durationMs": 12,
+    "status": "PASSED",
+    "notes": "Duplicate Endpoint created with ID: 91eeb812-1515-4eea-8bf9-647c96a08000"
+  },
+  {
+    "step": 25,
+    "title": "Patch Endpoint 2 (PATCH /endpoints/:id)",
+    "url": "http://localhost:4000/api/v1/endpoints/19e31a8b-c4ac-401b-aedd-a9263cc0c680",
+    "method": "PATCH",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": {
+      "summary": "Get full user profile by ID (Updated)"
+    },
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "19e31a8b-c4ac-401b-aedd-a9263cc0c680",
+        "versionId": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+        "folderId": null,
+        "method": "GET",
+        "path": "/v1/users/:id",
+        "summary": "Get full user profile by ID (Updated)",
+        "description": "Endpoint to be preserved",
+        "tags": [],
+        "deprecated": false,
+        "parameters": [
+          {
+            "in": "PATH",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": null,
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "User details",
+            "contentTypes": [
+              {
+                "schema": {
+                  "type": "object"
+                },
+                "mediaType": "application/json"
+              }
+            ]
+          }
+        ],
+        "security": [],
+        "orderIndex": 0,
+        "createdAt": "2026-11-02T14:02:36.811Z",
+        "updatedAt": "2026-11-02T14:02:36.842Z"
+      }
+    },
+    "durationMs": 13,
+    "status": "PASSED",
+    "notes": "Endpoint 2 patched successfully"
+  },
+  {
+    "step": 26,
+    "title": "DELETE Endpoint 1 [Only 1 of 2] (DELETE /endpoints/:id)",
+    "url": "http://localhost:4000/api/v1/endpoints/fb7a4bb7-0687-4fa8-a212-d608816f65cd",
+    "method": "DELETE",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "message": "Endpoint deleted"
+    },
+    "durationMs": 22,
+    "status": "PASSED",
+    "notes": "Endpoint 1 (fb7a4bb7-0687-4fa8-a212-d608816f65cd) deleted"
+  },
+  {
+    "step": 27,
+    "title": "Verify Endpoint 1 Deleted & Endpoint 2 Retained (GET /endpoints/:id)",
+    "url": "http://localhost:4000/api/v1/endpoints/19e31a8b-c4ac-401b-aedd-a9263cc0c680",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "19e31a8b-c4ac-401b-aedd-a9263cc0c680",
+        "versionId": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+        "folderId": null,
+        "method": "GET",
+        "path": "/v1/users/:id",
+        "summary": "Get full user profile by ID (Updated)",
+        "description": "Endpoint to be preserved",
+        "tags": [],
+        "deprecated": false,
+        "parameters": [
+          {
+            "in": "PATH",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": null,
+        "responses": [
+          {
+            "statusCode": 200,
+            "description": "User details",
+            "contentTypes": [
+              {
+                "schema": {
+                  "type": "object"
+                },
+                "mediaType": "application/json"
+              }
+            ]
+          }
+        ],
+        "security": [],
+        "orderIndex": 0,
+        "createdAt": "2026-11-02T14:02:36.811Z",
+        "updatedAt": "2026-11-02T14:02:36.842Z",
+        "folder": null
+      }
+    },
+    "durationMs": 8,
+    "status": "PASSED",
+    "notes": "Endpoint 2 safely preserved"
+  },
+  {
+    "step": 28,
+    "title": "Create Schema 1 [To be Deleted] (POST /versions/:id/schemas)",
+    "url": "http://localhost:4000/api/v1/versions/73366349-420f-4a85-a6ba-2f8dbc30bcf6/schemas",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": {
+      "name": "TempErrorResponse",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number"
+          },
+          "msg": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "statusCode": 201,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "af6fb012-95da-4cef-8b05-e9aa5ac27aa6",
+        "versionId": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+        "name": "TempErrorResponse",
+        "description": null,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "msg": {
+              "type": "string"
+            },
+            "code": {
+              "type": "number"
+            }
+          }
+        },
+        "createdAt": "2026-11-02T14:02:36.890Z",
+        "updatedAt": "2026-11-02T14:02:36.890Z"
+      }
+    },
+    "durationMs": 18,
+    "status": "PASSED",
+    "notes": "Created Schema 1 ID: af6fb012-95da-4cef-8b05-e9aa5ac27aa6"
+  },
+  {
+    "step": 29,
+    "title": "Create Schema 2 [To be Retained] (POST /versions/:id/schemas)",
+    "url": "http://localhost:4000/api/v1/versions/73366349-420f-4a85-a6ba-2f8dbc30bcf6/schemas",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": {
+      "name": "UserProfileResponse",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "email"
+        ]
+      }
+    },
+    "statusCode": 201,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "64ed618c-d156-46be-975c-ecacc13b215a",
+        "versionId": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+        "name": "UserProfileResponse",
+        "description": null,
+        "schema": {
+          "type": "object",
+          "required": [
+            "id",
+            "email"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "active": {
+              "type": "boolean"
+            }
+          }
+        },
+        "createdAt": "2026-11-02T14:02:36.907Z",
+        "updatedAt": "2026-11-02T14:02:36.907Z"
+      }
+    },
+    "durationMs": 15,
+    "status": "PASSED",
+    "notes": "Created Schema 2 ID: 64ed618c-d156-46be-975c-ecacc13b215a"
+  },
+  {
+    "step": 30,
+    "title": "List Schemas for Version (GET /versions/:id/schemas)",
+    "url": "http://localhost:4000/api/v1/versions/73366349-420f-4a85-a6ba-2f8dbc30bcf6/schemas",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "data": [
+        {
+          "id": "af6fb012-95da-4cef-8b05-e9aa5ac27aa6",
+          "versionId": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+          "name": "TempErrorResponse",
+          "description": null,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "msg": {
+                "type": "string"
+              },
+              "code": {
+                "type": "number"
+              }
+            }
+          },
+          "createdAt": "2026-11-02T14:02:36.890Z",
+          "updatedAt": "2026-11-02T14:02:36.890Z"
+        },
+        {
+          "id": "64ed618c-d156-46be-975c-ecacc13b215a",
+          "versionId": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+          "name": "UserProfileResponse",
+          "description": null,
+          "schema": {
+            "type": "object",
+            "required": [
+              "id",
+              "email"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "email": {
+                "type": "string",
+                "format": "email"
+              },
+              "active": {
+                "type": "boolean"
+              }
+            }
+          },
+          "createdAt": "2026-11-02T14:02:36.907Z",
+          "updatedAt": "2026-11-02T14:02:36.907Z"
+        }
+      ]
+    },
+    "durationMs": 9,
+    "status": "PASSED",
+    "notes": "Found 2 schemas"
+  },
+  {
+    "step": 31,
+    "title": "DELETE Schema 1 [Only 1 of 2] (DELETE /schemas/:id)",
+    "url": "http://localhost:4000/api/v1/schemas/af6fb012-95da-4cef-8b05-e9aa5ac27aa6",
+    "method": "DELETE",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "message": "Schema deleted"
+    },
+    "durationMs": 13,
+    "status": "PASSED",
+    "notes": "Schema 1 (af6fb012-95da-4cef-8b05-e9aa5ac27aa6) deleted"
+  },
+  {
+    "step": 32,
+    "title": "Verify Schema 2 Retained (GET /versions/:id/schemas)",
+    "url": "http://localhost:4000/api/v1/versions/73366349-420f-4a85-a6ba-2f8dbc30bcf6/schemas",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "data": [
+        {
+          "id": "64ed618c-d156-46be-975c-ecacc13b215a",
+          "versionId": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+          "name": "UserProfileResponse",
+          "description": null,
+          "schema": {
+            "type": "object",
+            "required": [
+              "id",
+              "email"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "email": {
+                "type": "string",
+                "format": "email"
+              },
+              "active": {
+                "type": "boolean"
+              }
+            }
+          },
+          "createdAt": "2026-11-02T14:02:36.907Z",
+          "updatedAt": "2026-11-02T14:02:36.907Z"
+        }
+      ]
+    },
+    "durationMs": 7,
+    "status": "PASSED",
+    "notes": "Schema 1 deleted, Schema 2 retained"
+  },
+  {
+    "step": 33,
+    "title": "Get Canonical Contract AST (GET /versions/:id/contract)",
+    "url": "http://localhost:4000/api/v1/versions/73366349-420f-4a85-a6ba-2f8dbc30bcf6/contract",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": "73366349-420f-4a85-a6ba-2f8dbc30bcf6",
+        "name": "Project Alpha (Core API)",
+        "version": "1.0.0",
+        "description": "Primary API Project with automated versioning",
+        "servers": [
+          {
+            "id": "fea9db23-a816-44b8-8207-e989b58e45d0",
+            "url": "http://localhost:3000/api",
+            "description": "Development"
+          },
+          {
+            "id": "2aa518e1-efb8-4915-a1e2-c30802ff8ffd",
+            "url": "https://api.production.internal",
+            "description": "Production"
+          }
+        ],
+        "tags": [],
+        "folders": [
+          {
+            "id": "c4e04a42-84f8-46cd-8dec-f3d230532dae",
+            "name": "Payments & Checkout (Permanent)",
+            "description": "Second folder to verify retention",
+            "orderIndex": 0
+          }
+        ],
+        "endpoints": [
+          {
+            "id": "19e31a8b-c4ac-401b-aedd-a9263cc0c680",
+            "folderId": null,
+            "method": "GET",
+            "path": "/v1/users/:id",
+            "summary": "Get full user profile by ID (Updated)",
+            "description": "Endpoint to be preserved",
+            "tags": [],
+            "deprecated": false,
+            "security": [],
+            "parameters": [
+              {
+                "in": "PATH",
+                "name": "id",
+                "schema": {
+                  "type": "string"
+                },
+                "required": true
+              }
+            ],
+            "responses": [
+              {
+                "statusCode": 200,
+                "description": "User details",
+                "contentTypes": [
+                  {
+                    "schema": {
+                      "type": "object"
+                    },
+                    "mediaType": "application/json"
+                  }
+                ]
+              }
+            ],
+            "orderIndex": 0
+          },
+          {
+            "id": "91eeb812-1515-4eea-8bf9-647c96a08000",
+            "folderId": null,
+            "method": "GET",
+            "path": "/v1/users/:id-copy",
+            "summary": "Get user profile by ID (Permanent) (Copy)",
+            "description": "Endpoint to be preserved",
+            "tags": [],
+            "deprecated": false,
+            "security": [],
+            "parameters": [
+              {
+                "in": "PATH",
+                "name": "id",
+                "schema": {
+                  "type": "string"
+                },
+                "required": true
+              }
+            ],
+            "responses": [
+              {
+                "statusCode": 200,
+                "description": "User details",
+                "contentTypes": [
+                  {
+                    "schema": {
+                      "type": "object"
+                    },
+                    "mediaType": "application/json"
+                  }
+                ]
+              }
+            ],
+            "orderIndex": 1
+          }
+        ],
+        "reusableSchemas": {
+          "UserProfileResponse": {
+            "type": "object",
+            "required": [
+              "id",
+              "email"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "email": {
+                "type": "string",
+                "format": "email"
+              },
+              "active": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "securitySchemes": {}
+      }
+    },
+    "durationMs": 20,
+    "status": "PASSED",
+    "notes": "Canonical AST compiled: \"Project Alpha (Core API)\" (1.0.0)"
+  },
+  {
+    "step": 34,
+    "title": "Generate Print-Ready PDF Manual (POST /generator/:id/pdf)",
+    "url": "http://localhost:4000/api/v1/generator/73366349-420f-4a85-a6ba-2f8dbc30bcf6/pdf",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 201,
+    "responseBody": {
+      "token": "5cb662ef7e67e5966bad6929ef781e0f224d3d621fa47bc2bdc9def32f2fc816",
+      "downloadUrl": "/api/v1/storage/download/5cb662ef7e67e5966bad6929ef781e0f224d3d621fa47bc2bdc9def32f2fc816",
+      "sizeBytes": 5649
+    },
+    "durationMs": 16,
+    "status": "PASSED",
+    "notes": "PDF generated with streaming token: 5cb662ef7e67e5966bad6929ef781e0f224d3d621fa47bc2bdc9def32f2fc816"
+  },
+  {
+    "step": 35,
+    "title": "Package Full Bundle ZIP (POST /generator/:id/zip)",
+    "url": "http://localhost:4000/api/v1/generator/73366349-420f-4a85-a6ba-2f8dbc30bcf6/zip",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 201,
+    "responseBody": {
+      "token": "8585102380de9d69c531488cd8aa255cb917dce0defb93a11df46a65724e41e7",
+      "downloadUrl": "/api/v1/storage/download/8585102380de9d69c531488cd8aa255cb917dce0defb93a11df46a65724e41e7",
+      "sizeBytes": 4158
+    },
+    "durationMs": 71,
+    "status": "PASSED",
+    "notes": "ZIP packaged with streaming token: 8585102380de9d69c531488cd8aa255cb917dce0defb93a11df46a65724e41e7"
+  },
+  {
+    "step": 36,
+    "title": "SSRF Security Defense Verification (POST /playground/execute)",
+    "url": "http://localhost:4000/api/v1/playground/execute",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": {
+      "url": "http://localhost:4000/api/v1/health",
+      "method": "GET",
+      "headers": {}
+    },
+    "statusCode": 400,
+    "responseBody": {
+      "message": "SSRF Security Violation: Hostname 'localhost' resolved to prohibited IP '::1'.",
+      "error": "Bad Request",
+      "statusCode": 400
+    },
+    "durationMs": 15,
+    "status": "PASSED",
+    "notes": "SSRF attack attempt on localhost successfully blocked (HTTP 400)"
+  },
+  {
+    "step": 37,
+    "title": "Get Playground Execution History (GET /playground/history)",
+    "url": "http://localhost:4000/api/v1/playground/history",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...lqP7-tPY"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "data": []
+    },
+    "durationMs": 3,
+    "status": "PASSED",
+    "notes": "History entries: 0"
+  },
+  {
+    "step": 38,
+    "title": "Placeholder Missing Token [401 Rejection Check] (GET /placeholder/me)",
+    "url": "http://localhost:4000/api/v1/placeholder/me",
+    "method": "GET",
+    "headers": {},
+    "body": null,
+    "statusCode": 401,
+    "responseBody": {
+      "message": "Authentication token is required (Bearer <token>)",
+      "error": "Unauthorized",
+      "statusCode": 401
+    },
+    "durationMs": 1,
+    "status": "PASSED",
+    "notes": "Guarded endpoint correctly rejected request without token (401)"
+  },
+  {
+    "step": 39,
+    "title": "Placeholder Authentication With User Token (GET /placeholder/me)",
+    "url": "http://localhost:4000/api/v1/placeholder/me",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...C3ZPMHoo"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "authenticated": true,
+      "user": {
+        "userId": "6ae65ce3-f15b-4bed-980b-92ca7fccb0e1",
+        "firstName": "Christopher",
+        "lastName": "Boniface",
+        "userName": "chrispin2",
+        "email": "shilpa@greenadsglobal.com",
+        "contactNumber": "+91 99469 11952",
+        "accountId": "d700cb72-d882-4a3f-bef4-94a97d2fe120",
+        "accountVerified": false,
+        "enabled": true,
+        "createTime": "2025-04-29T08:33:59.792Z",
+        "updateTime": "2025-04-29T08:33:59.792Z",
+        "account": {
+          "accountId": "d700cb72-d882-4a3f-bef4-94a97d2fe120",
+          "accountName": "chrispin2",
+          "planId": null,
+          "referenceId": null,
+          "resellerId": 1,
+          "isActive": true,
+          "isStickyAgent": false,
+          "createTime": "2025-04-29T08:33:59.780Z",
+          "updateTime": "2026-07-01T18:30:00.595Z"
+        },
+        "userRoles": [
+          {
+            "userRoleId": "d670a6e9-fe33-4ed0-b02d-9d27c179a8f0",
+            "userId": "6ae65ce3-f15b-4bed-980b-92ca7fccb0e1",
+            "roleId": 1,
+            "role": {
+              "roleId": 1,
+              "roleName": "ACCOUNT_ADMIN",
+              "description": "Account Owner",
+              "roleAuthorities": [
+                {
+                  "roleAuthorityId": 1,
+                  "roleId": 1,
+                  "authorityId": 2,
+                  "authority": {
+                    "authorityId": 2,
+                    "authorityName": "AGENT_WEB",
+                    "description": "Agent Web"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "timestamp": "2026-11-02T14:02:37.073Z"
+    },
+    "durationMs": 1,
+    "status": "PASSED",
+    "notes": "Authenticated as: Christopher Boniface (shilpa@greenadsglobal.com), Role: ACCOUNT_ADMIN"
+  },
+  {
+    "step": 40,
+    "title": "Create Placeholder Item 1 [To be Deleted] (POST /placeholder/items)",
+    "url": "http://localhost:4000/api/v1/placeholder/items",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...C3ZPMHoo"
+    },
+    "body": {
+      "name": "Item Alpha (Disposable)",
+      "description": "First placeholder item to test deletion",
+      "category": "devices",
+      "status": "draft"
+    },
+    "statusCode": 201,
+    "responseBody": {
+      "id": "0c44a896-d786-432f-bc2a-f27a10fd2414",
+      "name": "Item Alpha (Disposable)",
+      "description": "First placeholder item to test deletion",
+      "category": "devices",
+      "status": "draft",
+      "createdBy": "6ae65ce3-f15b-4bed-980b-92ca7fccb0e1",
+      "createdAt": "2026-11-02T14:02:37.075Z",
+      "updatedAt": "2026-11-02T14:02:37.075Z"
+    },
+    "durationMs": 2,
+    "status": "PASSED",
+    "notes": "Created Item 1 ID: 0c44a896-d786-432f-bc2a-f27a10fd2414"
+  },
+  {
+    "step": 41,
+    "title": "Create Placeholder Item 2 [To be Retained] (POST /placeholder/items)",
+    "url": "http://localhost:4000/api/v1/placeholder/items",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...C3ZPMHoo"
+    },
+    "body": {
+      "name": "Item Beta (Permanent)",
+      "description": "Second placeholder item to test retention",
+      "category": "devices",
+      "status": "active"
+    },
+    "statusCode": 201,
+    "responseBody": {
+      "id": "cd66ab05-1074-4021-8012-c796f2a69e64",
+      "name": "Item Beta (Permanent)",
+      "description": "Second placeholder item to test retention",
+      "category": "devices",
+      "status": "active",
+      "createdBy": "6ae65ce3-f15b-4bed-980b-92ca7fccb0e1",
+      "createdAt": "2026-11-02T14:02:37.077Z",
+      "updatedAt": "2026-11-02T14:02:37.077Z"
+    },
+    "durationMs": 1,
+    "status": "PASSED",
+    "notes": "Created Item 2 ID: cd66ab05-1074-4021-8012-c796f2a69e64"
+  },
+  {
+    "step": 42,
+    "title": "List Placeholder Items (GET /placeholder/items)",
+    "url": "http://localhost:4000/api/v1/placeholder/items",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...C3ZPMHoo"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": [
+      {
+        "id": "item-seed-1",
+        "name": "Initial Placeholder Item",
+        "description": "System seed item for testing",
+        "category": "general",
+        "status": "active",
+        "createdBy": "system",
+        "createdAt": "2026-11-02T14:02:25.241Z",
+        "updatedAt": "2026-11-02T14:02:25.242Z"
+      },
+      {
+        "id": "0c44a896-d786-432f-bc2a-f27a10fd2414",
+        "name": "Item Alpha (Disposable)",
+        "description": "First placeholder item to test deletion",
+        "category": "devices",
+        "status": "draft",
+        "createdBy": "6ae65ce3-f15b-4bed-980b-92ca7fccb0e1",
+        "createdAt": "2026-11-02T14:02:37.075Z",
+        "updatedAt": "2026-11-02T14:02:37.075Z"
+      },
+      {
+        "id": "cd66ab05-1074-4021-8012-c796f2a69e64",
+        "name": "Item Beta (Permanent)",
+        "description": "Second placeholder item to test retention",
+        "category": "devices",
+        "status": "active",
+        "createdBy": "6ae65ce3-f15b-4bed-980b-92ca7fccb0e1",
+        "createdAt": "2026-11-02T14:02:37.077Z",
+        "updatedAt": "2026-11-02T14:02:37.077Z"
+      }
+    ],
+    "durationMs": 1,
+    "status": "PASSED",
+    "notes": "Found 3 placeholder items"
+  },
+  {
+    "step": 43,
+    "title": "Get Placeholder Item 1 (GET /placeholder/items/:id)",
+    "url": "http://localhost:4000/api/v1/placeholder/items/0c44a896-d786-432f-bc2a-f27a10fd2414",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...C3ZPMHoo"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "id": "0c44a896-d786-432f-bc2a-f27a10fd2414",
+      "name": "Item Alpha (Disposable)",
+      "description": "First placeholder item to test deletion",
+      "category": "devices",
+      "status": "draft",
+      "createdBy": "6ae65ce3-f15b-4bed-980b-92ca7fccb0e1",
+      "createdAt": "2026-11-02T14:02:37.075Z",
+      "updatedAt": "2026-11-02T14:02:37.075Z"
+    },
+    "durationMs": 4,
+    "status": "PASSED",
+    "notes": "Retrieved Item 1: \"Item Alpha (Disposable)\""
+  },
+  {
+    "step": 44,
+    "title": "Update Placeholder Item 2 (PUT /placeholder/items/:id)",
+    "url": "http://localhost:4000/api/v1/placeholder/items/cd66ab05-1074-4021-8012-c796f2a69e64",
+    "method": "PUT",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...C3ZPMHoo"
+    },
+    "body": {
+      "status": "published",
+      "description": "Updated item 2 status to published"
+    },
+    "statusCode": 200,
+    "responseBody": {
+      "id": "cd66ab05-1074-4021-8012-c796f2a69e64",
+      "name": "Item Beta (Permanent)",
+      "description": "Updated item 2 status to published",
+      "category": "devices",
+      "status": "published",
+      "createdBy": "6ae65ce3-f15b-4bed-980b-92ca7fccb0e1",
+      "createdAt": "2026-11-02T14:02:37.077Z",
+      "updatedAt": "2026-11-02T14:02:37.084Z"
+    },
+    "durationMs": 1,
+    "status": "PASSED",
+    "notes": "Item 2 updated to status: published"
+  },
+  {
+    "step": 45,
+    "title": "DELETE Placeholder Item 1 [Only 1 of 2] (DELETE /placeholder/items/:id)",
+    "url": "http://localhost:4000/api/v1/placeholder/items/0c44a896-d786-432f-bc2a-f27a10fd2414",
+    "method": "DELETE",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...C3ZPMHoo"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "message": "Item 0c44a896-d786-432f-bc2a-f27a10fd2414 successfully deleted",
+      "deletedId": "0c44a896-d786-432f-bc2a-f27a10fd2414",
+      "remainingCount": 2
+    },
+    "durationMs": 2,
+    "status": "PASSED",
+    "notes": "Item 1 (0c44a896-d786-432f-bc2a-f27a10fd2414) deleted"
+  },
+  {
+    "step": 46,
+    "title": "Verify Item 1 Deleted Returns 404 (GET /placeholder/items/:id)",
+    "url": "http://localhost:4000/api/v1/placeholder/items/0c44a896-d786-432f-bc2a-f27a10fd2414",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...C3ZPMHoo"
+    },
+    "body": null,
+    "statusCode": 404,
+    "responseBody": {
+      "message": "Item with ID 0c44a896-d786-432f-bc2a-f27a10fd2414 not found",
+      "error": "Not Found",
+      "statusCode": 404
+    },
+    "durationMs": 1,
+    "status": "PASSED",
+    "notes": "Confirmed: Deleted Item 1 returns 404 Not Found"
+  },
+  {
+    "step": 47,
+    "title": "Verify Item 2 Retained Returns 200 (GET /placeholder/items/:id)",
+    "url": "http://localhost:4000/api/v1/placeholder/items/cd66ab05-1074-4021-8012-c796f2a69e64",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...C3ZPMHoo"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "id": "cd66ab05-1074-4021-8012-c796f2a69e64",
+      "name": "Item Beta (Permanent)",
+      "description": "Updated item 2 status to published",
+      "category": "devices",
+      "status": "published",
+      "createdBy": "6ae65ce3-f15b-4bed-980b-92ca7fccb0e1",
+      "createdAt": "2026-11-02T14:02:37.077Z",
+      "updatedAt": "2026-11-02T14:02:37.084Z"
+    },
+    "durationMs": 1,
+    "status": "PASSED",
+    "notes": "Confirmed: Item 2 safely intact (\"Item Beta (Permanent)\")"
+  },
+  {
+    "step": 48,
+    "title": "Create Campaign 1 [To be Deleted] (POST /placeholder/campaigns)",
+    "url": "http://localhost:4000/api/v1/placeholder/campaigns",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...C3ZPMHoo"
+    },
+    "body": {
+      "name": "Diwali Festive Sale 2026",
+      "description": "First campaign created to test deletion",
+      "channel": "WHATSAPP_RICH_MEDIA"
+    },
+    "statusCode": 201,
+    "responseBody": {
+      "id": "aeece8b5-e70b-430e-9a1b-ffc83a0610b5",
+      "name": "Diwali Festive Sale 2026",
+      "description": "First campaign created to test deletion",
+      "category": "campaign",
+      "status": "active",
+      "createdBy": "6ae65ce3-f15b-4bed-980b-92ca7fccb0e1",
+      "createdAt": "2026-11-02T14:02:37.089Z",
+      "updatedAt": "2026-11-02T14:02:37.089Z"
+    },
+    "durationMs": 1,
+    "status": "PASSED",
+    "notes": "Created Campaign 1 ID: aeece8b5-e70b-430e-9a1b-ffc83a0610b5"
+  },
+  {
+    "step": 49,
+    "title": "Create Campaign 2 [To be Retained] (POST /placeholder/campaigns)",
+    "url": "http://localhost:4000/api/v1/placeholder/campaigns",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...C3ZPMHoo"
+    },
+    "body": {
+      "name": "New Year Loyalty Bonus",
+      "description": "Second campaign created to verify retention",
+      "channel": "EMAIL_AND_SMS"
+    },
+    "statusCode": 201,
+    "responseBody": {
+      "id": "113ef0f6-2561-47f8-b44a-34e8e419284d",
+      "name": "New Year Loyalty Bonus",
+      "description": "Second campaign created to verify retention",
+      "category": "campaign",
+      "status": "active",
+      "createdBy": "6ae65ce3-f15b-4bed-980b-92ca7fccb0e1",
+      "createdAt": "2026-11-02T14:02:37.090Z",
+      "updatedAt": "2026-11-02T14:02:37.090Z"
+    },
+    "durationMs": 1,
+    "status": "PASSED",
+    "notes": "Created Campaign 2 ID: 113ef0f6-2561-47f8-b44a-34e8e419284d"
+  },
+  {
+    "step": 50,
+    "title": "List Placeholder Campaigns (GET /placeholder/campaigns)",
+    "url": "http://localhost:4000/api/v1/placeholder/campaigns",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...C3ZPMHoo"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": [
+      {
+        "id": "aeece8b5-e70b-430e-9a1b-ffc83a0610b5",
+        "name": "Diwali Festive Sale 2026",
+        "description": "First campaign created to test deletion",
+        "category": "campaign",
+        "status": "active",
+        "createdBy": "6ae65ce3-f15b-4bed-980b-92ca7fccb0e1",
+        "createdAt": "2026-11-02T14:02:37.089Z",
+        "updatedAt": "2026-11-02T14:02:37.089Z"
+      },
+      {
+        "id": "113ef0f6-2561-47f8-b44a-34e8e419284d",
+        "name": "New Year Loyalty Bonus",
+        "description": "Second campaign created to verify retention",
+        "category": "campaign",
+        "status": "active",
+        "createdBy": "6ae65ce3-f15b-4bed-980b-92ca7fccb0e1",
+        "createdAt": "2026-11-02T14:02:37.090Z",
+        "updatedAt": "2026-11-02T14:02:37.090Z"
+      }
+    ],
+    "durationMs": 1,
+    "status": "PASSED",
+    "notes": "Found 2 campaigns"
+  },
+  {
+    "step": 51,
+    "title": "DELETE Campaign 1 [Only 1 of 2] (DELETE /placeholder/campaigns/:id)",
+    "url": "http://localhost:4000/api/v1/placeholder/campaigns/aeece8b5-e70b-430e-9a1b-ffc83a0610b5",
+    "method": "DELETE",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...C3ZPMHoo"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "success": true,
+      "message": "Item aeece8b5-e70b-430e-9a1b-ffc83a0610b5 successfully deleted",
+      "deletedId": "aeece8b5-e70b-430e-9a1b-ffc83a0610b5",
+      "remainingCount": 3
+    },
+    "durationMs": 1,
+    "status": "PASSED",
+    "notes": "Campaign 1 (aeece8b5-e70b-430e-9a1b-ffc83a0610b5) deleted"
+  },
+  {
+    "step": 52,
+    "title": "Verify Campaign 2 Retained (GET /placeholder/items/:id)",
+    "url": "http://localhost:4000/api/v1/placeholder/items/113ef0f6-2561-47f8-b44a-34e8e419284d",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJ...C3ZPMHoo"
+    },
+    "body": null,
+    "statusCode": 200,
+    "responseBody": {
+      "id": "113ef0f6-2561-47f8-b44a-34e8e419284d",
+      "name": "New Year Loyalty Bonus",
+      "description": "Second campaign created to verify retention",
+      "category": "campaign",
+      "status": "active",
+      "createdBy": "6ae65ce3-f15b-4bed-980b-92ca7fccb0e1",
+      "createdAt": "2026-11-02T14:02:37.090Z",
+      "updatedAt": "2026-11-02T14:02:37.090Z"
+    },
+    "durationMs": 1,
+    "status": "PASSED",
+    "notes": "Confirmed: Campaign 2 safely intact (\"New Year Loyalty Bonus\")"
+  }
+]

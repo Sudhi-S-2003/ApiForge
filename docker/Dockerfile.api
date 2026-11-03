@@ -1,0 +1,59 @@
+# syntax=docker/dockerfile:1.4
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Install build dependencies
+RUN apk add --no-cache libc6-compat
+
+# Copy root manifest and workspace package manifests
+COPY package*.json ./
+COPY packages/shared/package*.json ./packages/shared/
+COPY apps/api/package*.json ./apps/api/
+
+# Install dependencies
+RUN npm ci
+
+# Copy source files
+COPY packages/shared ./packages/shared
+COPY apps/api ./apps/api
+
+# Build shared package
+RUN npm --prefix packages/shared run build
+
+# Generate Prisma Client and build NestJS
+RUN cd apps/api && npx prisma generate
+RUN npm --prefix apps/api run build
+
+# Production Runner Stage
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+ENV NODE_ENV=production
+ENV PORT=4000
+
+# Install dumb-init for proper signal forwarding
+RUN apk add --no-cache dumb-init
+
+# Create non-root user
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nestjs
+
+# Copy runtime node_modules and built dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/packages/shared/dist ./packages/shared/dist
+COPY --from=builder /app/packages/shared/package.json ./packages/shared/
+COPY --from=builder /app/apps/api/dist ./apps/api/dist
+COPY --from=builder /app/apps/api/prisma ./apps/api/prisma
+COPY --from=builder /app/apps/api/package.json ./apps/api/
+
+# Prepare storage vault directory
+RUN mkdir -p /app/storage/exports /app/storage/uploads && \
+    chown -R nestjs:nodejs /app/storage
+
+USER nestjs
+
+EXPOSE 4000
+
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+CMD ["node", "apps/api/dist/apps/api/src/main.js"]
